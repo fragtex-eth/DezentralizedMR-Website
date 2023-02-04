@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+.logo {
+  height: 58px;
+}
+.header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+.connectbtn {
+  all: unset;
+  /* Primary */
+
+  background: #a061df;
+  /* button shadow */
+
+  box-shadow: 0px 8px 12px rgba(93, 0, 207, 0.15);
+  border-radius: 40px;
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+
+  text-align: center;
+  color: #ffffff;
+}
