@@ -6,7 +6,7 @@ export default function Info() {
     <div className="infocontent">
       <div className="content">
         <h1>Make the move now... </h1>
-        <p>
+        <p className="pmain">
           Lorem ipsum dolor sit amet consectetur. Ligula cursus ac magna eget
           netus netus euismod in. Fermentum id vulputate porttitor accumsan.
           Facilisis turpis at aliquam ut.
