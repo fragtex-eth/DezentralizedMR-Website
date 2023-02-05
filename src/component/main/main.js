@@ -1,6 +1,6 @@
 import "./main.css";
 import lines from "../../assets/lines.png";
-
+import Info from "../info/info";
 export default function Main() {
   return (
     <div className="maincontent">
@@ -17,6 +17,7 @@ export default function Main() {
       </div>
       <img src={lines} className="linesBackground" alt="" />
       <div className="elblur"></div>
+      <Info />
     </div>
   );
 }
