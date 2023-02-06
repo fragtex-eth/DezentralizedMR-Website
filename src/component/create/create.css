@@ -6,6 +6,7 @@
   width: 100%;
 
   background: rgba(22, 14, 30, 0.7);
+  z-index: 4;
 }
 
 .creationscreen {
@@ -28,6 +29,11 @@
   /* button shadow */
   font-size: 58px;
   align-self: flex-end;
+  cursor: pointer;
+  -webkit-animation: move 5s linear 0 infinite;
+}
+.closeicon:hover {
+  transform: scale(1.01);
 }
 .singlequestion {
   width: 45%;

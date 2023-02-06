@@ -8,6 +8,11 @@
 }
 .links {
   display: flex;
+  cursor: pointer;
+}
+.link1:hover {
+  display: flex;
+  color: #a061df !important;
 }
 .reviewbtn {
   all: unset;
@@ -33,8 +38,13 @@
 
   text-align: center;
   color: #746e7a;
+  cursor: pointer;
+  -webkit-animation: move 5s linear 0 infinite;
 }
-a {
+.reviewbtn:hover {
+  transform: scale(1.01);
+}
+.links p {
   all: unset;
   font-family: "Inter";
   font-style: normal;
@@ -49,7 +59,7 @@ a {
 
   color: #746e7a;
 }
-a:first-child {
+.links p:first-child {
   margin-right: 70px;
 }
 .linesBackground {

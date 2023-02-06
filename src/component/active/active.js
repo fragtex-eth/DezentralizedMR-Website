@@ -4,6 +4,7 @@ import surveybg2 from "../../assets/surveybg2.jpg";
 import surveybg3 from "../../assets/surveybg3.jpg";
 import surveybg4 from "../../assets/surveybg4.jpg";
 import surveybg5 from "../../assets/surveybg5.jpg";
+
 export default function Active() {
   const bg = [surveybg1, surveybg2, surveybg3, surveybg4, surveybg5];
   const activeSurveys = [
