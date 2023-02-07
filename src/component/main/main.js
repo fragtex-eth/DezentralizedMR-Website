@@ -2,8 +2,6 @@ import "./main.css";
 import lines from "../../assets/lines.png";
 import Info from "../info/info";
 import Active from "../active/active";
-import Create from "../create/create";
-import { useState } from "react";
 
 export default function Main({
   mainscreen,

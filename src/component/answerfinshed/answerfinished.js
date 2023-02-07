@@ -33,23 +33,21 @@ export default function AnswerFinished({ onShow }) {
   });
 
   return (
-    <div className="answersurvey">
-      <div className="answerscreen">
-        <div
-          className="leftsectionfinished"
-          style={{ backgroundImage: `url(${cube})` }}
-        ></div>
-        <div className="rightsectionfinished">
-          <div className="firstrow">
-            <div className="checkicon" onClick={onShow}>
-              <IconContext.Provider value={{ className: "checkicon" }}>
-                <AiFillCheckCircle />
-              </IconContext.Provider>
-            </div>
-            <span className="successtxt">Success</span>
+    <div className="answerscreen">
+      <div
+        className="leftsectionfinished"
+        style={{ backgroundImage: `url(${cube})` }}
+      ></div>
+      <div className="rightsectionfinished finishedsucc">
+        <div className="firstrow">
+          <div className="checkicon" onClick={onShow}>
+            <IconContext.Provider value={{ className: "checkicon" }}>
+              <AiFillCheckCircle />
+            </IconContext.Provider>
           </div>
-          <div className="singleanswer "></div>
+          <span className="successtxt">Success</span>
         </div>
+        <div className="singleanswer "></div>
       </div>
     </div>
   );

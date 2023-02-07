@@ -3,25 +3,11 @@ import { AiFillCloseCircle, AiFillDingtalkSquare } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useState } from "react";
 import cube from "../../assets/cube.png";
+import AnswerFinished from "../answerfinshed/answerfinished";
 
-export default function Answer({ onShow }) {
-  const questions = [
-    {
-      name: "Question 1",
-    },
-    {
-      name: "Question 2",
-    },
-    {
-      name: "Question 3",
-    },
-    {
-      name: "Question 4",
-    },
-    {
-      name: "Question 5",
-    },
-  ];
+export default function Answer({ questions, setAnswer }) {
+  const [activeQ, setActiveQ] = useState(0);
+  const [finished, setFinised] = useState(false);
 
   const allQuestions = questions.map((question) => {
     return (
@@ -32,37 +18,59 @@ export default function Answer({ onShow }) {
     );
   });
 
+  function onNext() {
+    if (activeQ < questions.length - 1) setActiveQ(activeQ + 1);
+    else {
+      setFinised(true);
+      setActiveQ(0);
+    }
+  }
+  function isFinished() {
+    if (finished) {
+      setAnswer(false);
+    }
+  }
+
   return (
-    <div className="answersurvey">
-      <div className="answerscreen">
-        <div
-          className="leftsection"
-          style={{ backgroundImage: `url(${cube})` }}
-        >
-          <div className="divprog1">
-            <progress max="100" value="20" className="progress 1" />
-          </div>
-        </div>
-        <div className="rightsection">
-          <div className="firstrow">
-            <span className="questionnr">
-              <span className="currentSelection">1</span>/2
-            </span>
-            <div className="closeicon" onClick={onShow}>
-              <IconContext.Provider value={{ className: "closeicon" }}>
-                <AiFillCloseCircle />
-              </IconContext.Provider>
+    <div className="answersurvey" onClick={() => isFinished()}>
+      {finished ? (
+        <AnswerFinished />
+      ) : (
+        <div className="answerscreen">
+          <div
+            className="leftsection"
+            style={{ backgroundImage: `url(${cube})` }}
+          >
+            <div className="divprog1">
+              <progress
+                max={questions.length}
+                value={activeQ + 1}
+                className="progress 1"
+              />
             </div>
           </div>
-          <div className="singleanswer ">
-            <span className="answertitel">
-              1. Fermentum id vulputate porttitor?
-            </span>
-            <input type="text" className="questioninput finali" />
+          <div className="rightsection">
+            <div className="firstrow">
+              <span className="questionnr">
+                <span className="currentSelection">{activeQ + 1}</span>/
+                {questions.length}
+              </span>
+              <div className="closeicon" onClick={() => setAnswer(false)}>
+                <IconContext.Provider value={{ className: "closeicon" }}>
+                  <AiFillCloseCircle />
+                </IconContext.Provider>
+              </div>
+            </div>
+            <div className="singleanswer ">
+              <span className="answertitel">{questions[activeQ]}</span>
+              <input type="text" className="questioninput finali" />
+            </div>
+            <button className="nextbtn" onClick={() => onNext()}>
+              Next
+            </button>
           </div>
-          <button className="nextbtn">Next</button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
