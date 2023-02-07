@@ -18,7 +18,7 @@
 
   box-shadow: 0px 8px 12px rgba(93, 0, 207, 0.15);
   border-radius: 40px;
-  width: 150px;
+  width: 175px;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -34,4 +34,11 @@
   text-align: center;
   color: #ffffff;
   -webkit-animation: move 5s linear 0 infinite;
+  cursor: pointer;
+}
+.connectbtn:hover {
+  transform: scale(1.01);
+}
+.connectbtn:active {
+  transform: scale(0.99);
 }

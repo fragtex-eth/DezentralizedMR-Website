@@ -85,6 +85,13 @@
   /* Primary */
 
   color: #a061df;
+  cursor: pointer;
+}
+.btnparticipate:hover {
+  box-shadow: 0px 0px 20px rgba(93, 0, 207, 0.553);
+}
+.btnparticipate:active {
+  transform: scale(0.99);
 }
 .approxpayout {
   background: #ecececb4;

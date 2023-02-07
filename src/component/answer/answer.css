@@ -162,6 +162,10 @@ progress .answer {
   color: #ffffff;
   align-self: flex-end;
   margin-top: auto;
+  cursor: pointer !important;
+}
+.nextbtn:hover {
+  box-shadow: 0px 0px 20px rgba(93, 0, 207, 0.553);
 }
 .firstrow {
   padding-left: 40px;
@@ -196,4 +200,20 @@ progress .answer {
 
   color: #a061df;
   display: inline;
+}
+.missing {
+  all: unset;
+  /* Light background */
+
+  background: #a061df74;
+  /* Primary */
+  border: 2px solid #a7a7a74b;
+  border-radius: 40px;
+  height: 50px;
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 90%;
+  margin-left: -20px;
+  margin-top: 10px;
 }

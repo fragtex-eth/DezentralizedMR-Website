@@ -1,5 +1,6 @@
 import "./header.css";
 import logo from "../../assets/logo.png";
+import CustomConnectButton from "../helper/connectbutton";
 
 export default function Header({ setMainScreen }) {
   return (
@@ -11,7 +12,7 @@ export default function Header({ setMainScreen }) {
         onClick={() => setMainScreen(0)}
       />
 
-      <button className="connectbtn">Connect</button>
+      <CustomConnectButton />
     </div>
   );
 }

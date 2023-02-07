@@ -1,5 +1,5 @@
 import "./answer.css";
-import { AiFillCloseCircle, AiFillDingtalkSquare } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useState } from "react";
 import cube from "../../assets/cube.png";
@@ -8,6 +8,9 @@ import AnswerFinished from "../answerfinshed/answerfinished";
 export default function Answer({ questions, setAnswer }) {
   const [activeQ, setActiveQ] = useState(0);
   const [finished, setFinised] = useState(false);
+  const [answers, setAnswers] = useState([]);
+  const [message, setMessage] = useState("");
+  const [missingtxt, setMissingTxt] = useState(false);
 
   const allQuestions = questions.map((question) => {
     return (
@@ -19,10 +22,22 @@ export default function Answer({ questions, setAnswer }) {
   });
 
   function onNext() {
-    if (activeQ < questions.length - 1) setActiveQ(activeQ + 1);
-    else {
-      setFinised(true);
-      setActiveQ(0);
+    if (message != "") {
+      setMissingTxt(false);
+      if (activeQ < questions.length - 1) {
+        setAnswer(answers.push(message));
+        setMessage("");
+        setActiveQ(activeQ + 1);
+      } else {
+        setAnswer(answers.push(message));
+        console.log(answers);
+        //Call
+        setAnswer([]);
+        setFinised(true);
+        setActiveQ(0);
+      }
+    } else {
+      setMissingTxt(true);
     }
   }
   function isFinished() {
@@ -30,6 +45,11 @@ export default function Answer({ questions, setAnswer }) {
       setAnswer(false);
     }
   }
+  const handleChange = (event) => {
+    // 👇 "message" stores input field value
+    console.log(event.target.value);
+    setMessage(event.target.value);
+  };
 
   return (
     <div className="answersurvey" onClick={() => isFinished()}>
@@ -63,10 +83,17 @@ export default function Answer({ questions, setAnswer }) {
             </div>
             <div className="singleanswer ">
               <span className="answertitel">{questions[activeQ]}</span>
-              <input type="text" className="questioninput finali" />
+              <input
+                type="text"
+                className={
+                  missingtxt ? "questioninput missing" : "questioninput "
+                }
+                onChange={(e) => handleChange(e)}
+                value={message}
+              />
             </div>
             <button className="nextbtn" onClick={() => onNext()}>
-              Next
+              {activeQ < questions.length - 1 ? "Next" : "Send"}
             </button>
           </div>
         </div>
