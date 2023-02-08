@@ -13,6 +13,21 @@
   display: flex;
   flex-direction: column;
 }
+.questionformat1 {
+  margin-top: -30px;
+  margin-bottom: 15px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  /* Dark main */
+
+  color: #221033;
+}
 .questionformat {
   margin-top: 25px;
   font-family: "Inter";

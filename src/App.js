@@ -15,7 +15,7 @@ import { publicProvider } from "wagmi/providers/public";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/37184/marketresearch/v0.0.1",
+  uri: "https://api.studio.thegraph.com/query/37184/mr-thegraph/v0.0.2",
 });
 
 const { chains, provider } = configureChains(
@@ -39,6 +39,10 @@ function App() {
   const [create, setCreate] = useState(false);
   const [review, setReview] = useState(false);
   const [mainscreen, setMainScreen] = useState(0);
+  const [questionsR, setQuestionsR] = useState([]);
+  const [answersR, setAnswersR] = useState([]);
+  const [addressR, setAddressR] = useState();
+
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
@@ -50,9 +54,21 @@ function App() {
               setMainScreen={setMainScreen}
               setCreate={setCreate}
               setReview={setReview}
+              setQuestionsR={setQuestionsR}
+              setAnswersR={setAnswersR}
+              setAddressR={setAddressR}
             />
             {create ? <Create onShow={() => setCreate(false)} /> : ""}
-            {review ? <Review onShow={() => setReview(false)} /> : ""}
+            {review ? (
+              <Review
+                onShow={() => setReview(false)}
+                questionsR={questionsR}
+                answersR={answersR}
+                addressR={addressR}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </ApolloProvider>
       </RainbowKitProvider>

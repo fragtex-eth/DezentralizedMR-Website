@@ -18,87 +18,40 @@ export default function Active() {
   const bg = [surveybg1, surveybg2, surveybg3, surveybg4, surveybg5];
   const [answer, setAnswer] = useState(false);
   const [address3, setAddress] = useState("");
-  const [names, setNames] = useState([]);
+  const [participants, setParticipants] = useState([]);
   const [questions, setQuestions] = useState([]);
   const { loading, error, data } = useQuery(GET_SURVEY_STATES);
 
   async function getInformation() {
     if (!loading) {
+      let participantstemp = [];
       for (var x = 0; x < data.surveyStates.length; x++) {
         const data2 = await readContracts({
           contracts: [
             {
               address: data.surveyStates[x].survey,
               abi: SurveyABI,
-              functionName: "name",
+              functionName: "getParticipants",
             },
           ],
         });
-        let nameTemp = names;
-        nameTemp.push(data2);
-        setNames(nameTemp);
+        participantstemp[x] = parseInt(data2);
       }
+      setParticipants(participantstemp);
+      console.log(participants);
     }
   }
 
-  const activeSurveys = [
-    {
-      id: "1",
-      address: "0xad4cb06582d71158c2b7bccdcd30d77997b220bd",
-      name: "Survey 1",
-      maxparticipants: "12",
-      logo: "",
-      image: surveybg1,
-    },
-    {
-      id: "2",
-      address: "1xad4cb06582d71158c2b7bccdcd30d77997b220bd",
-      name: "Survey 2",
-      maxparticipants: "14",
-      logo: "",
-      image: surveybg2,
-    },
-    {
-      id: "3",
-      address: "2xad4cb06582d71158c2b7bccdcd30d77997b220bd",
-      name: "Survey 3",
-      maxparticipants: "100",
-      logo: "",
-      image: surveybg3,
-    },
-    {
-      id: "4",
-      address: "3xad4cb06582d71158c2b7bccdcd30d77997b220bd",
-      name: "Survey 3",
-      maxparticipants: "100",
-      logo: "",
-      image: surveybg4,
-    },
-  ];
-  useEffect(() => {
-    getInformation();
-  }, [loading]);
-
-  async function participate(address2) {
+  async function participate(address2, questions) {
     setAddress(address2);
-    let newQuestions = [];
-    let data3;
-    for (let x = 0; x < 5; x++) {
-      data3 = await readContracts({
-        contracts: [
-          {
-            address: address2,
-            abi: SurveyABI,
-            functionName: "questions",
-            args: [x],
-          },
-        ],
-      });
-      newQuestions.push(data3[0]);
-    }
-    setQuestions(newQuestions);
+    setQuestions(questions);
     setAnswer(true);
   }
+  useEffect(() => {
+    if (!loading) {
+      getInformation();
+    }
+  }, [data]);
 
   const allSurveys = loading
     ? "loading"
@@ -114,7 +67,7 @@ export default function Active() {
                 <div className="belowimg">
                   <button
                     className="btnparticipate"
-                    onClick={() => participate(survey.survey)}
+                    onClick={() => participate(survey.survey, survey.questions)}
                   >
                     Participate
                   </button>
@@ -130,14 +83,18 @@ export default function Active() {
             </div>
 
             <div className="displayinfo">
-              <p>{loading ? "loading" : names[index]}</p>
+              <p>{survey._name}</p>
               <p className="participated">
                 {" "}
-                <span className="highlight">0 </span>/ {survey._participants}
+                <span className="highlight">{participants[index]} </span>/{" "}
+                {survey._participants}
               </p>
             </div>
             <div className="divprog">
-              <progress max={survey._participants} value={0} />
+              <progress
+                max={survey._participants}
+                value={participants[index]}
+              />
             </div>
           </div>
         );

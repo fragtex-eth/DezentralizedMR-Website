@@ -2,47 +2,45 @@ import "./review.css";
 import { AiFillCloseCircle, AiFillDingtalkSquare } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useState } from "react";
-export default function Review({ onShow }) {
-  const questions = [
-    {
-      name: "Question 1",
-      obligatory: true,
-    },
-    {
-      name: "Question 2",
-      obligatory: true,
-    },
-    {
-      name: "Question 3",
-      obligatory: true,
-    },
-    {
-      name: "Question 4",
-      obligatory: true,
-    },
-    {
-      name: "Question 5",
-      obligatory: true,
-    },
-  ];
+import Survey from "../helper/Survey.json";
+import {
+  prepareWriteContract,
+  writeContract,
+  waitForTransaction,
+  getNetwork,
+} from "@wagmi/core";
 
-  const answers = [];
-  const allQuestions = questions.map((question) => {
+const SurveyABI = Survey.abi;
+
+export default function Review({ onShow, questionsR, answersR, addressR }) {
+  const [review, setReview] = useState();
+
+  async function confirmReview() {
+    const config = await prepareWriteContract({
+      address: addressR,
+      abi: SurveyABI,
+      functionName: "reviewAnswers",
+      args: [review],
+    });
+    const send = await writeContract(config);
+    onShow();
+  }
+
+  const allQuestions = questionsR.map((question, index) => {
     return (
-      <div className="singlequestion">
+      <div className="singlequestion" key={index}>
         <span className="title">
-          {question.name}{" "}
-          {question.obligatory ? <span className="red">*</span> : ""}
+          {index + 1}. {question}
         </span>
-        <p className="answer">
-          From they fine john he give of rich he. They age and draw mrs like.
-          Improving end distrusts may instantly was household applauded
-          incommode.
-        </p>
+        <p className="answer">{answersR[index]}</p>
       </div>
     );
   });
-
+  const handleChange = (event) => {
+    // 👇 "message" stores input field value
+    console.log(event.target.value);
+    setReview(event.target.value);
+  };
   return (
     <div className="createsurvey">
       <div className="reviewscreen">
@@ -51,26 +49,51 @@ export default function Review({ onShow }) {
             <AiFillCloseCircle />
           </IconContext.Provider>
         </div>
+        <span className="questionformat1">Review answers</span>
         <div className="question">{allQuestions}</div>
         <span className="questionformat">How would you rate the answer?</span>
         <div className="selection">
           <label>
-            <input type="radio" id="poor" name="choice" value="poor" />
+            <input
+              type="radio"
+              id="poor"
+              name="choice"
+              value="0"
+              onChange={handleChange}
+            />
             Poor
           </label>
 
           <label for="fair">
-            <input type="radio" id="fair" name="choice" value="fair" />
+            <input
+              type="radio"
+              id="fair"
+              name="choice"
+              value="1"
+              onChange={handleChange}
+            />
             Fair
           </label>
 
           <label for="average">
-            <input type="radio" id="average" name="choice" value="average" />
+            <input
+              type="radio"
+              id="average"
+              name="choice"
+              value="2"
+              onChange={handleChange}
+            />
             Average
           </label>
 
           <label for="good">
-            <input type="radio" id="good" name="choice" value="good" />
+            <input
+              type="radio"
+              id="good"
+              name="choice"
+              value="3"
+              onChange={handleChange}
+            />
             Good
           </label>
 
@@ -79,12 +102,18 @@ export default function Review({ onShow }) {
               type="radio"
               id="excellent"
               name="choice"
-              value="excellent"
+              value="4"
+              onChange={handleChange}
             />
             Excellent
           </label>
         </div>
-        <button className="confirmReviewSelection">Confirm</button>
+        <button
+          className="confirmReviewSelection"
+          onClick={() => confirmReview()}
+        >
+          Confirm
+        </button>
       </div>
     </div>
   );

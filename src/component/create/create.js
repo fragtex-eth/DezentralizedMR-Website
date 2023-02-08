@@ -17,7 +17,7 @@ const FactoryContractAddress = FactoryContractInfo.address;
 
 export default function Create({ onShow }) {
   //name, participants, endTime, reviewNeeded, capital
-  const [input, setInput] = useState([[], [], [], 2592000, 10, []]);
+  const [input, setInput] = useState([[], [], [], 2500, 10, []]);
   const questions = [
     {
       idx: 6,
@@ -56,7 +56,9 @@ export default function Create({ onShow }) {
     console.log(input);
     const UNIXTime = Math.floor(Date.now() / 1000);
     let inputperm = input;
-    inputperm[4] = inputperm[4] + UNIXTime;
+    inputperm[3] = inputperm[3] + UNIXTime;
+    console.log(UNIXTime);
+    console.log(inputperm[3]);
     setInput(inputperm);
     try {
       const config = await prepareWriteContract({
