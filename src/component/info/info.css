@@ -95,4 +95,8 @@ h1 {
   /* text */
 
   color: #ffffff;
+  cursor: pointer;
+}
+.startbtn:hover {
+  transform: scale(1.01);
 }

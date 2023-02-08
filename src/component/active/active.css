@@ -180,3 +180,18 @@ progress::-webkit-progress-value {
   background-size: 25px 14px, 100% 100%, 100% 100%;
   -webkit-animation: move 5s linear 0 infinite;
 }
+.centerloading {
+  height: 100%;
+  width: 100%;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  /* or 138% */
+
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 50px;
+}

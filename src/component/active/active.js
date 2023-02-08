@@ -53,52 +53,51 @@ export default function Active() {
     }
   }, [data]);
 
-  const allSurveys = loading
-    ? "loading"
-    : data.surveyStates.map((survey, index) => {
-        console.log(survey);
-        return (
-          <div className="singleelement" id={survey.id}>
-            <div
-              className="surveypreview"
-              style={{ backgroundImage: `url(${bg[index]})` }}
-            >
-              <div className="filter">
-                <div className="belowimg">
-                  <button
-                    className="btnparticipate"
-                    onClick={() => participate(survey.survey, survey.questions)}
-                  >
-                    Participate
-                  </button>
-                  <span className="approxpayout">
-                    ~
-                    {parseInt(survey._capital) /
-                      parseInt(survey._participants) /
-                      10000000000000000000}{" "}
-                    ETH
-                  </span>
-                </div>
+  const allSurveys = loading ? (
+    <div className="centerloading">loading..</div>
+  ) : (
+    data.surveyStates.map((survey, index) => {
+      console.log(survey);
+      return (
+        <div className="singleelement" id={survey.id}>
+          <div
+            className="surveypreview"
+            style={{ backgroundImage: `url(${bg[index]})` }}
+          >
+            <div className="filter">
+              <div className="belowimg">
+                <button
+                  className="btnparticipate"
+                  onClick={() => participate(survey.survey, survey.questions)}
+                >
+                  Participate
+                </button>
+                <span className="approxpayout">
+                  ~
+                  {parseInt(survey._capital) /
+                    parseInt(survey._participants) /
+                    10000000000000000000}{" "}
+                  ETH
+                </span>
               </div>
             </div>
-
-            <div className="displayinfo">
-              <p>{survey._name}</p>
-              <p className="participated">
-                {" "}
-                <span className="highlight">{participants[index]} </span>/{" "}
-                {survey._participants}
-              </p>
-            </div>
-            <div className="divprog">
-              <progress
-                max={survey._participants}
-                value={participants[index]}
-              />
-            </div>
           </div>
-        );
-      });
+
+          <div className="displayinfo">
+            <p>{survey._name}</p>
+            <p className="participated">
+              {" "}
+              <span className="highlight">{participants[index]} </span>/{" "}
+              {survey._participants}
+            </p>
+          </div>
+          <div className="divprog">
+            <progress max={survey._participants} value={participants[index]} />
+          </div>
+        </div>
+      );
+    })
+  );
 
   return (
     <div className="activecontent">
