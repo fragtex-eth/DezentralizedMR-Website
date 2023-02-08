@@ -2,9 +2,22 @@ import "./create.css";
 import { AiFillCloseCircle, AiFillDingtalkSquare } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useState } from "react";
+import CompiledContract from "../helper/Factory.json";
+import { ethers } from "ethers";
+import FactoryContractInfo from "../helper/address.json";
+import {
+  prepareWriteContract,
+  writeContract,
+  waitForTransaction,
+  getNetwork,
+} from "@wagmi/core";
+
+const FactoryABI = CompiledContract.abi;
+const FactoryContractAddress = FactoryContractInfo.address;
+
 export default function Create({ onShow }) {
   //name, participants, endTime, reviewNeeded, capital
-  const [input, setInput] = useState([[], [], [], [2592000], [10], []]);
+  const [input, setInput] = useState([[], [], [], 2592000, 10, []]);
   const questions = [
     {
       idx: 6,
@@ -38,6 +51,32 @@ export default function Create({ onShow }) {
       obligatory: true,
     },
   ];
+
+  async function Create() {
+    console.log(input);
+    const UNIXTime = Math.floor(Date.now() / 1000);
+    let inputperm = input;
+    inputperm[4] = inputperm[4] + UNIXTime;
+    setInput(inputperm);
+    try {
+      const config = await prepareWriteContract({
+        //@ts-ignore
+        address: FactoryContractAddress,
+        abi: FactoryABI,
+        functionName: "createSurvey",
+        args: input,
+        overrides: {
+          value: input[5],
+        },
+      });
+      const data = await writeContract(config);
+      await waitForTransaction({
+        hash: data.hash,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   const handleChange = (event, idx) => {
     let inputperm = input;
@@ -94,7 +133,9 @@ export default function Create({ onShow }) {
           </div>
           <div className="singlequestion sqadj">
             <span className="title adjustt btntxt">btn</span>
-            <button className="questioninput qb">Create</button>
+            <button className="questioninput qb" onClick={(e) => Create()}>
+              Create
+            </button>
           </div>
         </div>
       </div>

@@ -4,8 +4,19 @@ import { IconContext } from "react-icons";
 import { useState } from "react";
 import cube from "../../assets/cube.png";
 import AnswerFinished from "../answerfinshed/answerfinished";
+import CompiledContract from "../helper/Factory.json";
+import FactoryContractInfo from "../helper/address.json";
+import {
+  prepareWriteContract,
+  writeContract,
+  waitForTransaction,
+  getNetwork,
+} from "@wagmi/core";
 
-export default function Answer({ questions, setAnswer }) {
+import Survey from "../helper/Survey.json";
+const SurveyABI = Survey.abi;
+
+export default function Answer({ questions, setAnswer, address }) {
   const [activeQ, setActiveQ] = useState(0);
   const [finished, setFinised] = useState(false);
   const [answers, setAnswers] = useState([]);
@@ -21,7 +32,26 @@ export default function Answer({ questions, setAnswer }) {
     );
   });
 
-  function onNext() {
+  async function SubmitAnswers() {
+    console.log(answers);
+    try {
+      const config = await prepareWriteContract({
+        //@ts-ignore
+        address: address,
+        abi: SurveyABI,
+        functionName: "answerQuestions",
+        args: [answers],
+      });
+      const data = await writeContract(config);
+      await waitForTransaction({
+        hash: data.hash,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function onNext() {
     if (message != "") {
       setMissingTxt(false);
       if (activeQ < questions.length - 1) {
@@ -32,6 +62,7 @@ export default function Answer({ questions, setAnswer }) {
         setAnswer(answers.push(message));
         console.log(answers);
         //Call
+        await SubmitAnswers();
         setAnswer([]);
         setFinised(true);
         setActiveQ(0);
