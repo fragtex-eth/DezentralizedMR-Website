@@ -90,4 +90,5 @@ input[type="radio" i] {
   margin-left: auto;
   margin-right: auto;
   margin-top: 25px;
+  cursor: pointer;
 }
