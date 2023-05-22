@@ -1,15 +1,13 @@
 import "./create.css";
-import { AiFillCloseCircle, AiFillDingtalkSquare } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useState } from "react";
 import CompiledContract from "../helper/Factory.json";
-import { ethers } from "ethers";
 import FactoryContractInfo from "../helper/address.json";
 import {
   prepareWriteContract,
   writeContract,
   waitForTransaction,
-  getNetwork,
 } from "@wagmi/core";
 
 const FactoryABI = CompiledContract.abi;

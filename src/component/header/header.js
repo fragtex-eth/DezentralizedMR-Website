@@ -4,7 +4,7 @@ import CustomConnectButton from "../helper/connectbutton";
 
 export default function Header({ setMainScreen }) {
   return (
-    <div className="header">
+    <header className="header">
       <img
         src={logo}
         alt="logo survey"
@@ -13,6 +13,6 @@ export default function Header({ setMainScreen }) {
       />
 
       <CustomConnectButton />
-    </div>
+    </header>
   );
 }

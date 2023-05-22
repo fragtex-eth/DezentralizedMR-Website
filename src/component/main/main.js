@@ -7,12 +7,9 @@ import { useQuery } from "@apollo/client";
 import {
   prepareWriteContract,
   writeContract,
-  waitForTransaction,
-  getNetwork,
+  readContracts,
+  getAccount,
 } from "@wagmi/core";
-import { readContracts } from "@wagmi/core";
-//Currently no function if survey is not in review stage
-import { getAccount } from "@wagmi/core";
 
 import Survey from "../helper/Survey.json";
 const SurveyABI = Survey.abi;
@@ -27,35 +24,31 @@ export default function Main({
   setAddressR,
 }) {
   const { loading, error, data } = useQuery(GET_REVIEW_SURVEYS);
+
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
+
   const account = getAccount();
+
   async function getReview() {
-    console.log(data.surveyStates);
+    if (!data.surveyStates.length) {
+      console.log("No survey states");
+      return;
+    }
 
-    let randomNumb = Math.floor(Math.random() * data.surveyStates.length);
-    let addressSurvey = data.surveyStates[randomNumb].survey;
-    let questionsAnswered = data.surveyStates[randomNumb].questions;
-    let answersgivenbyParticpant = [];
-    console.log(addressSurvey);
+    const randomNumb = Math.floor(Math.random() * data.surveyStates.length);
+    const { survey: addressSurvey, questions: questionsAnswered } =
+      data.surveyStates[randomNumb];
+    const answersgivenbyParticpant = [];
 
-    const addressParticipant1 = await readContracts({
-      contracts: [
-        {
-          address: addressSurvey,
-          abi: SurveyABI,
-          functionName: "returnReviewParticipant",
-          args: [account.address],
-        },
-      ],
-    });
-
-    const config = await prepareWriteContract({
+    const requestReviewContract = await prepareWriteContract({
       address: addressSurvey,
       abi: SurveyABI,
       functionName: "requestReview",
     });
-    const data2 = await writeContract(config);
-    console.log(account.address);
-    const addressParticipant = await readContracts({
+    await writeContract(requestReviewContract);
+
+    const [addressParticipant] = await readContracts({
       contracts: [
         {
           address: addressSurvey,
@@ -66,23 +59,20 @@ export default function Main({
       ],
     });
 
-    console.log(addressParticipant[0]);
-
-    for (var x = 0; x < 5; x++) {
-      const data3 = await readContracts({
+    for (let x = 0; x < 5; x++) {
+      const [answer] = await readContracts({
         contracts: [
           {
             address: addressSurvey,
             abi: SurveyABI,
             functionName: "viewAnswers",
-            args: [addressParticipant[0], x],
+            args: [addressParticipant, x],
           },
         ],
       });
-      answersgivenbyParticpant[x] = data3[0];
+      answersgivenbyParticpant.push(answer);
     }
-    console.log(answersgivenbyParticpant);
-    console.log(questionsAnswered);
+
     setAnswersR(answersgivenbyParticpant);
     setAddressR(addressSurvey);
     setQuestionsR(questionsAnswered);
@@ -90,7 +80,6 @@ export default function Main({
     setReview(true);
   }
 
-  console.log(mainscreen);
   return (
     <div className="maincontent">
       <div className="linkbar">
@@ -102,13 +91,13 @@ export default function Main({
             Show Active
           </p>
         </div>
-        <button className="reviewbtn" onClick={() => getReview()}>
+        <button className="reviewbtn" onClick={getReview}>
           Review ~0.0001 ETH
         </button>
       </div>
-      <img src={lines} className="linesBackground" alt="" />
+      <img src={lines} className="linesBackground" alt="Background" />
       <div className="elblur"></div>
-      {mainscreen == 0 ? <Info setMainScreen={setMainScreen}/> : <Active />}
+      {mainscreen === 0 ? <Info setMainScreen={setMainScreen} /> : <Active />}
     </div>
   );
 }
