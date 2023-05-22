@@ -108,7 +108,7 @@ export default function Main({
       </div>
       <img src={lines} className="linesBackground" alt="" />
       <div className="elblur"></div>
-      {mainscreen == 0 ? <Info /> : <Active />}
+      {mainscreen == 0 ? <Info setMainScreen={setMainScreen}/> : <Active />}
     </div>
   );
 }

@@ -1,6 +1,10 @@
 .App {
+
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   padding: 10px 15px;
+  padding-left: clamp(5px, 0px + 2vw, 15px);
+  padding-right: clamp(5px, 0px + 2vw, 15px);
+
 }

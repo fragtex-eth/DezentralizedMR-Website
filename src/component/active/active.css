@@ -12,8 +12,10 @@
 .surveys {
   display: flex;
   flex-wrap: wrap;
+
 }
 .singleelement {
+  flex: 1 1 auto;
   background: #ffffff;
   /* Light background */
 
@@ -31,7 +33,7 @@
   transform: scale(1.01);
 }
 .surveypreview {
-  width: 360px;
+
   height: 246px;
   border-radius: 34px;
   background-size: cover;
@@ -194,4 +196,15 @@ progress::-webkit-progress-value {
   align-items: center;
   margin-top: 50px;
   margin-left: 50px;
+}
+@media screen and (max-width: 375px) {
+.approxpayout{
+  display: none;
+}
+.belowimg{
+  justify-content: center;
+}
+.btnparticipate {
+  width: 100%;
+}
 }
