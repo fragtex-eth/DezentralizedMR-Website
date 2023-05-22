@@ -1,6 +1,6 @@
 # Decentralized Surveys
 
-Decentralized Surveys is a React-based web application for creating, participating in, and reviewing surveys on the Ethereum blockchain.
+Decentralized Surveys is a React-based web application for creating, participating in, and reviewing surveys on the Goerli Testnet.
 
 ## Quickstart
 
