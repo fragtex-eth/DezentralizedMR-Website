@@ -1,7 +1,8 @@
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import "./connectButton.css";
 
-export default function CustomConnectButton({}) {
+export default function CustomConnectButton({ }) {
   return (
     <ConnectButton.Custom>
       {({
@@ -14,8 +15,7 @@ export default function CustomConnectButton({}) {
         mounted,
       }) => {
         const ready = mounted && authenticationStatus !== "loading";
-        const connected =
-          ready &&
+        const connected = ready &&
           account &&
           chain &&
           (!authenticationStatus || authenticationStatus === "authenticated");

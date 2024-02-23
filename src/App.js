@@ -1,9 +1,9 @@
 import "./App.css";
-import Header from "./component/header/header";
-import Main from "./component/main/main";
-import Create from "./component/create/create";
-import Review from "./component/review/review";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import Header from "./components/header/header.js";
+// import Main from "./component/main/main";
+// import Create from "./component/create/create";
+// import Review from "./component/review/review";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { useState } from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -45,25 +45,25 @@ function App() {
       <RainbowKitProvider chains={chains}>
         <ApolloProvider client={client}>
           <div className="App">
-            <Header setMainScreen={setMainScreen} />
-            <Main
-              mainscreen={mainscreen}
-              setMainScreen={setMainScreen}
-              setCreate={setCreate}
-              setReview={setReview}
-              setQuestionsR={setQuestionsR}
-              setAnswersR={setAnswersR}
-              setAddressR={setAddressR}
-            />
-            {create && <Create onShow={() => setCreate(false)} />}
-            {review && (
-              <Review
-                onShow={() => setReview(false)}
-                questionsR={questionsR}
-                answersR={answersR}
-                addressR={addressR}
-              />
-            )}
+            <Header />
+            {/*   <Main */}
+            {/*     mainscreen={mainscreen} */}
+            {/*     setMainScreen={setMainScreen} */}
+            {/*     setCreate={setCreate} */}
+            {/*     setReview={setReview} */}
+            {/*     setQuestionsR={setQuestionsR} */}
+            {/*     setAnswersR={setAnswersR} */}
+            {/*     setAddressR={setAddressR} */}
+            {/*   /> */}
+            {/*   {create && <Create onShow={() => setCreate(false)} />} */}
+            {/*   {review && ( */}
+            {/*     <Review */}
+            {/*       onShow={() => setReview(false)} */}
+            {/*       questionsR={questionsR} */}
+            {/*       answersR={answersR} */}
+            {/*       addressR={addressR} */}
+            {/*     /> */}
+            {/*   )} */}
           </div>
         </ApolloProvider>
       </RainbowKitProvider>

@@ -1,14 +1,14 @@
 import "./header.css";
 import logo from "../../assets/logo.png";
-import CustomConnectButton from "../helper/connectbutton";
-export default function Header({ setMainScreen }) {
+import CustomConnectButton from "./connectButton";
+export default function Header() {
   return (
-    <header className="header">
+    <header>
       <img
         src={logo}
         alt="logo survey"
         className="logo"
-        onClick={() => setMainScreen(0)}
+        onClick={() => console.log("main screen")}
       />
       <CustomConnectButton />
     </header>
