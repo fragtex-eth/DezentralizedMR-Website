@@ -1,0 +1,45 @@
+/* NOTE: import fonts locally*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 7rem;
+
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-logo {
+      height: clamp(40px, 10px + 5vw, 58px);
+      cursor: pointer;
+    }
+  }
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  :not(:last-child) {
+    margin-right: 5rem;
+  }
+
+  &-link-btn {
+    color: #746e7a;
+    font-weight: 400;
+
+    &:hover {
+      color: #a061df;
+    }
+  }
+
+  &-review-btn {
+    margin-left: auto;
+    color: #746e7a;
+    background: #ececec;
+    box-shadow: 0 0.5rem 0.75rem rgba(118 115 15 / 15%);
+  }
+}

@@ -1,5 +1,6 @@
 import "./App.css";
 import Header from "./components/header/header.js";
+import Info from "./components/info/info";
 // import Main from "./component/main/main";
 // import Create from "./component/create/create";
 // import Review from "./component/review/review";
@@ -46,6 +47,7 @@ function App() {
         <ApolloProvider client={client}>
           <div className="App">
             <Header />
+            <Info />
             {/*   <Main */}
             {/*     mainscreen={mainscreen} */}
             {/*     setMainScreen={setMainScreen} */}

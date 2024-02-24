@@ -1,11 +1,12 @@
-import logo from "../../assets/logo.png";
+import Logo from "../../assets/logo.png";
 import CustomConnectButton from "./connectButton";
+import "./header.scss";
 export default function Header() {
   return (
     <header>
       <div className="top-row">
         <img
-          src={logo}
+          src={Logo}
           alt="logo survey"
           className="top-row-logo"
           onClick={() => console.log("main screen")}
@@ -13,22 +14,21 @@ export default function Header() {
         <CustomConnectButton />
       </div>
       <div className="bottom-row">
-        <button
-          href="bottom-row-create-btn"
-          className=""
+        <a
+          className="bottom-row-link-btn"
           onClick={() => console.log("create")}
         >
           Create New
-        </button>
-        <button
+        </a>
+        <a
           href=""
-          className="main-linkbar-links-active"
+          className="bottom-row-link-btn"
           onClick={() => console.log("active")}
         >
           Show Active
-        </button>
+        </a>
         <button
-          className="main-linkar-requestReviewBtn"
+          className="bottom-row-review-btn"
           onClick={() => console.log("requestreview")}
         >
           Review ~0.0001 ETH

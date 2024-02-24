@@ -1,7 +1,7 @@
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-export default function CustomConnectButton({ }) {
+export default function CustomConnectButton({}) {
   return (
     <ConnectButton.Custom>
       {({
@@ -14,7 +14,8 @@ export default function CustomConnectButton({ }) {
         mounted,
       }) => {
         const ready = mounted && authenticationStatus !== "loading";
-        const connected = ready &&
+        const connected =
+          ready &&
           account &&
           chain &&
           (!authenticationStatus || authenticationStatus === "authenticated");
@@ -36,7 +37,7 @@ export default function CustomConnectButton({ }) {
                   <button
                     onClick={openConnectModal}
                     type="button"
-                    className="py-2 px-4 lg:px-8 text-lg rounded bg-[#ffe78b] text-secondary connectbtn"
+                    className="violet-btn"
                   >
                     Connect Wallet
                   </button>
@@ -48,7 +49,7 @@ export default function CustomConnectButton({ }) {
                   <button
                     onClick={openChainModal}
                     type="button"
-                    className="py-2 px-4 lg:px-8 text-lg rounded bg-[#ffe78b] text-secondary connectbtn"
+                    className="violet-btn"
                   >
                     Wrong network
                   </button>
@@ -60,7 +61,7 @@ export default function CustomConnectButton({ }) {
                   <button
                     onClick={openAccountModal}
                     type="button"
-                    className="py-2 px-4 lg:px-8 text-lg rounded bg-button-gradient connectbtn"
+                    className="violet-btn"
                   >
                     {account.displayName}
                   </button>
