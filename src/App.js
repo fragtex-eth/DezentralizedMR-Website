@@ -1,6 +1,7 @@
 import "./App.css";
 import Header from "./components/header/header.js";
 import Info from "./components/info/info";
+import Background from "./components/common/background/background";
 // import Main from "./component/main/main";
 // import Create from "./component/create/create";
 // import Review from "./component/review/review";
@@ -46,26 +47,28 @@ function App() {
       <RainbowKitProvider chains={chains}>
         <ApolloProvider client={client}>
           <div className="App">
-            <Header />
-            <Info />
-            {/*   <Main */}
-            {/*     mainscreen={mainscreen} */}
-            {/*     setMainScreen={setMainScreen} */}
-            {/*     setCreate={setCreate} */}
-            {/*     setReview={setReview} */}
-            {/*     setQuestionsR={setQuestionsR} */}
-            {/*     setAnswersR={setAnswersR} */}
-            {/*     setAddressR={setAddressR} */}
-            {/*   /> */}
-            {/*   {create && <Create onShow={() => setCreate(false)} />} */}
-            {/*   {review && ( */}
-            {/*     <Review */}
-            {/*       onShow={() => setReview(false)} */}
-            {/*       questionsR={questionsR} */}
-            {/*       answersR={answersR} */}
-            {/*       addressR={addressR} */}
-            {/*     /> */}
-            {/*   )} */}
+            <Background>
+              <Header />
+              <Info />
+              {/*   <Main */}
+              {/*     mainscreen={mainscreen} */}
+              {/*     setMainScreen={setMainScreen} */}
+              {/*     setCreate={setCreate} */}
+              {/*     setReview={setReview} */}
+              {/*     setQuestionsR={setQuestionsR} */}
+              {/*     setAnswersR={setAnswersR} */}
+              {/*     setAddressR={setAddressR} */}
+              {/*   /> */}
+              {/*   {create && <Create onShow={() => setCreate(false)} />} */}
+              {/*   {review && ( */}
+              {/*     <Review */}
+              {/*       onShow={() => setReview(false)} */}
+              {/*       questionsR={questionsR} */}
+              {/*       answersR={answersR} */}
+              {/*       addressR={addressR} */}
+              {/*     /> */}
+              {/*   )} */}
+            </Background>
           </div>
         </ApolloProvider>
       </RainbowKitProvider>

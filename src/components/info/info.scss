@@ -1,7 +1,7 @@
 .info {
   display: flex;
   justify-content: center;
-  background: linear-gradient(100deg, #fff, 20%, hsla(0, 0, 100%, 0) 95%);
+  background: linear-gradient(100deg, #fff, 40%, hsla(0, 0, 100%, 0) 95%);
   border-radius: 3.125rem;
   overflow: hidden;
   position: relative;
@@ -19,7 +19,8 @@
   &-right {
     width: 50%;
     margin-left: auto;
-    background-position: 50%;
+    //cut off white space on the left side
+    background-position: -1px, 50%;
     background-size: cover;
     background-repeat: no-repeat;
   }
