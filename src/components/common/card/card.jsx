@@ -1,5 +1,9 @@
 import "./card.scss";
-
+import PlaceholderImage1 from "../../../assets/surveybg1.jpeg";
+import PlaceholderImage2 from "../../../assets/surveybg2.jpg";
+import PlaceholderImage3 from "../../../assets/surveybg3.jpg";
+import PlaceholderImage4 from "../../../assets/surveybg4.jpg";
+import PlaceholderImage5 from "../../../assets/surveybg5.jpg";
 export default function Card({
   id,
   name,
@@ -10,38 +14,47 @@ export default function Card({
   survey,
   question,
 }) {
+  const placeholerImages = [
+    PlaceholderImage1,
+    PlaceholderImage2,
+    PlaceholderImage3,
+    PlaceholderImage4,
+    PlaceholderImage5,
+  ];
   return (
     <div className="card" key={id}>
       <div
-        className="surveypreview"
+        className="card-image"
         style={{
-          backgroundImage: image ? `url(${bg[id % bg.length]})` : image,
+          backgroundImage: image
+            ? image
+            : `url(${placeholerImages[id % placeholerImages.length]})`,
         }}
       >
-        <div className="filter">
-          <div className="belowimg">
-            <button
-              className="participate-btn"
-              onClick={() => console.log("participate")}
-            >
-              Participate
-            </button>
-            <span className="approxpayout">
-              ~{capital / parseInt(maximumParticipants) / 1e19} ETH
-            </span>
-          </div>
+        <div className="card-image-bottom">
+          <button
+            className="card-image-bottom-btn"
+            onClick={() => console.log("participate")}
+          >
+            Participate
+          </button>
+          <span className="card-image-bottom-payout">
+            ~{capital / parseInt(maximumParticipants) / 1e19} ETH
+          </span>
         </div>
       </div>
 
-      <div className="displayinfo">
+      <div className="card-bottom">
         <p>{name}</p>
-        <p className="participated">
+        <p className="card-bottom-participants">
           {" "}
-          <span className="highlight">{currentParticipants}</span>/{" "}
-          {maximumParticipants}
+          <span className="card-bottom-participants-current">
+            {currentParticipants}
+          </span>
+          / {maximumParticipants}
         </p>
       </div>
-      <div className="divprog">
+      <div className="card-progress">
         <progress max={maximumParticipants} value={currentParticipants} />
       </div>
     </div>
