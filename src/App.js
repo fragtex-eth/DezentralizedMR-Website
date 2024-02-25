@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/header/header.js";
-import Info from "./components/info/info";
-import Background from "./components/common/background/background";
+import Background from "./components/background/background";
+import Main from "./views/Home/home";
 // import Main from "./component/main/main";
 // import Create from "./component/create/create";
 // import Review from "./component/review/review";
@@ -49,8 +49,7 @@ function App() {
           <div className="App">
             <Background>
               <Header />
-              <Info />
-              {/*   <Main */}
+              <Main />
               {/*     mainscreen={mainscreen} */}
               {/*     setMainScreen={setMainScreen} */}
               {/*     setCreate={setCreate} */}

@@ -1,7 +1,8 @@
 import "./info.css";
 import cube from "../../assets/cube.png";
 
-export default function Info({setMainScreen}) {
+
+export default function Info({ setMainScreen }) {
   return (
     <div className="infocontent">
       <div className="content">
@@ -11,7 +12,7 @@ export default function Info({setMainScreen}) {
           platform, you can participate in surveys, share your opinions, and
           receive rewards for your contributions.
         </p>
-        <button className="startbtn" onClick={()=>setMainScreen(1)}>Try now</button>
+        <button className="startbtn" onClick={() => setMainScreen(1)}>Try now</button>
       </div>
       <div className="leftside"></div>
       <div

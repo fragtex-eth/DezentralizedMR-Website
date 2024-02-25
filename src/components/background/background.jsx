@@ -1,4 +1,4 @@
-import Lines from "../../../assets/lines.png";
+import Lines from "../../assets/lines.png";
 import "./background.scss";
 export default function Background({ children }) {
   return (
