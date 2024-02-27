@@ -4,8 +4,8 @@
     z-index: -1;
     height: 56rem;
     left: 50%;
-    top: 65%;
-    transform: translate(-50%, -50%);
+    top: 10rem;
+    transform: translateX(-50%);
   }
 
   &-circleblur {
@@ -17,7 +17,7 @@
     width: 1500px;
     z-index: -2;
     left: 40%;
-    top: 60%;
-    transform: translate(-50%, -50%);
+    top: 10rem;
+    transform: translateX(-50%);
   }
 }

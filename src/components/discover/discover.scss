@@ -1,10 +1,12 @@
 .discover {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   background: #ffffff;
-  min-height: 50rem;
+  min-height: 10rem;
   /* Light background */
   border-radius: 2.5rem;
   border: 1px solid #f7f4f9;
   padding: 1.5rem;
+  gap: 1.5rem;
 }

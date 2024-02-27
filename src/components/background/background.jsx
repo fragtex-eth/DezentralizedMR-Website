@@ -3,9 +3,9 @@ import "./background.scss";
 export default function Background({ children }) {
   return (
     <>
-      {children}
-      <img src={Lines} className="background-lines" />
+      <img src={Lines} alt="background lines" className="background-lines" />
       <div className="background-circleblur" />
+      {children}
     </>
   );
 }
