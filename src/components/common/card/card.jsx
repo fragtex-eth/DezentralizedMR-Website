@@ -4,6 +4,9 @@ import PlaceholderImage2 from "../../../assets/surveybg2.jpg";
 import PlaceholderImage3 from "../../../assets/surveybg3.jpg";
 import PlaceholderImage4 from "../../../assets/surveybg4.jpg";
 import PlaceholderImage5 from "../../../assets/surveybg5.jpg";
+export function CardPlaceHolder() {
+  return <div className="card pulse"></div>;
+}
 export default function Card({
   key,
   index,
@@ -36,6 +39,7 @@ export default function Card({
           <button
             className="card-image-bottom-btn"
             onClick={() => console.log("participate")}
+            disabled
           >
             Participate
           </button>

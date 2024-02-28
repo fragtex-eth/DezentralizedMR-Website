@@ -1,6 +1,6 @@
 import "./discover.scss";
 //TODO: Add variables for common used parameter, border size e.g.
-import Card from "../common/card/card.jsx";
+import Card, { CardPlaceHolder } from "../common/card/card.jsx";
 import { useQuery } from "@apollo/client";
 import { GET_SURVEY_STATES } from "../../services/graphfetch.js";
 import { useEffect, useState } from "react";
@@ -35,16 +35,20 @@ export default function Discover() {
   }, [data, loading]);
   return (
     <section className="discover">
-      {data?.surveyStates.map((survey, index) => (
-        <Card
-          key={survey.id}
-          index={index}
-          name={survey._name}
-          capital={survey._capital}
-          currentParticipants={participants[index]}
-          maximumParticipants={survey._participants}
-        />
-      ))}
+      {loading
+        ? Array.from({ length: 9 }).map((_, index) => (
+          <CardPlaceHolder key={index} />
+        ))
+        : data?.surveyStates.map((survey, index) => (
+          <Card
+            key={survey.id}
+            index={index}
+            name={survey._name}
+            capital={survey._capital}
+            currentParticipants={participants[index]}
+            maximumParticipants={survey._participants}
+          />
+        ))}
     </section>
   );
 }

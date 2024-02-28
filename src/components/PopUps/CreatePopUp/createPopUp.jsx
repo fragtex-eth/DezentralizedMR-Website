@@ -91,9 +91,7 @@ export default function CreatePopUp({ setCreateModalVisible }) {
       <div className="create-survey-form-question" key={index}>
         <span className="create-survey-form-question-title">
           {question.name}{" "}
-          {question.obligatory ? (
-            <span style={{ color: "#f26969" }}>*</span>
-          ) : (
+          {question.obligatory ? <span style={{ color: "#f26969" }}>*</span> : (
             ""
           )}
         </span>

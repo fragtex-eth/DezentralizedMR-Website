@@ -3,6 +3,7 @@ import Header from "./components/header/header.jsx";
 import Background from "./components/background/background";
 import Info from "./components/info/info.jsx";
 import CreatePopUp from "./components/popups/CreatePopUp/createPopUp.jsx";
+import AnswerPopUp from "./components/popups/AnswerPopUp/answerPopUp.jsx";
 import Discover from "./components/discover/discover.jsx";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -61,6 +62,7 @@ function App() {
               {createModalVisible && (
                 <CreatePopUp setCreateModalVisible={setCreateModalVisible} />
               )}
+              {/* <AnswerPopUp /> */}
               <RouterProvider router={router} />
               {/*     mainscreen={mainscreen} */}
               {/*     setMainScreen={setMainScreen} */}

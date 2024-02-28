@@ -109,3 +109,17 @@
     -webkit-animation: move 5s linear 0 infinite;
   }
 }
+
+.pulse {
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
