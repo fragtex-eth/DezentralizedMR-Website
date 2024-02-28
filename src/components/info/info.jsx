@@ -1,6 +1,9 @@
 import cube from "../../assets/cube.png";
+
 import "./info.scss";
+import { useNavigate } from "react-router-dom";
 export default function Info() {
+  const navigate = useNavigate();
   return (
     <section className="info">
       <div className="info-content">
@@ -13,7 +16,7 @@ export default function Info() {
         <button
           className="violet-btn"
           style={{ width: "7rem" }}
-          onClick={() => console.log("mainscreen")}
+          onClick={() => navigate("/discover")}
         >
           Try now
         </button>

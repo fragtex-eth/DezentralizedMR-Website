@@ -3,7 +3,7 @@ import Logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import CustomConnectButton from "./connectButton";
 import "./header.scss";
-export default function Header() {
+export default function Header({ setCreateModalVisible }) {
   const navigate = useNavigate();
   return (
     <>
@@ -27,13 +27,14 @@ export default function Header() {
           </a>
           <a
             className="bottom-row-link-btn"
-            onClick={() => console.log("create")}
+            onClick={() => setCreateModalVisible(true)}
           >
             Create Survey
           </a>
           <button
             className="bottom-row-review-btn"
             onClick={() => console.log("requestreview")}
+            disabled="true"
           >
             Review ~0.0001 ETH
           </button>

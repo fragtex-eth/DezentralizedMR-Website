@@ -5,7 +5,8 @@ import PlaceholderImage3 from "../../../assets/surveybg3.jpg";
 import PlaceholderImage4 from "../../../assets/surveybg4.jpg";
 import PlaceholderImage5 from "../../../assets/surveybg5.jpg";
 export default function Card({
-  id,
+  key,
+  index,
   name,
   image,
   capital,
@@ -22,13 +23,13 @@ export default function Card({
     PlaceholderImage5,
   ];
   return (
-    <div className="card" key={id}>
+    <div className="card" key={key}>
       <div
         className="card-image"
         style={{
           backgroundImage: image
             ? image
-            : `url(${placeholerImages[id % placeholerImages.length]})`,
+            : `url(${placeholerImages[index % placeholerImages.length]})`,
         }}
       >
         <div className="card-image-bottom">

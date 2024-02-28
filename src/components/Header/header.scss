@@ -41,5 +41,14 @@ header {
     color: #746e7a;
     background: #ececec;
     box-shadow: 0 0.5rem 0.75rem rgba(133 133 133/ 15%);
+
+    &:disabled {
+      cursor: default;
+      filter: grayscale(1);
+
+      &:hover {
+        transform: scale(1);
+      }
+    }
   }
 }

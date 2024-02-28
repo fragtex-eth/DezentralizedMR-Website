@@ -3,7 +3,6 @@ import Header from "./components/header/header.jsx";
 import Background from "./components/background/background";
 import Info from "./components/info/info.jsx";
 import CreatePopUp from "./components/popups/CreatePopUp/createPopUp.jsx";
-
 import Discover from "./components/discover/discover.jsx";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -12,6 +11,7 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { goerli } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState } from "react";
 
 const GRAPH_API_URI =
   "https://api.studio.thegraph.com/query/37184/mr-thegraph/v0.0.2";
@@ -33,32 +33,35 @@ const wagmiClient = createClient({
   connectors,
   provider,
 });
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Header />,
-    children: [
-      {
-        path: "",
-        element: <Info />,
-      },
-      {
-        path: "discover",
-        element: <Discover />,
-      },
-    ],
-  },
-]);
 
 function App() {
+  const [createModalVisible, setCreateModalVisible] = useState(false);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Header setCreateModalVisible={setCreateModalVisible} />,
+      children: [
+        {
+          path: "",
+          element: <Info />,
+        },
+        {
+          path: "discover",
+          element: <Discover />,
+        },
+      ],
+    },
+  ]);
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
         <ApolloProvider client={client}>
           <div className="App">
             <Background>
-              <CreatePopUp />
-              {/* <RouterProvider router={router} /> */}
+              {createModalVisible && (
+                <CreatePopUp setCreateModalVisible={setCreateModalVisible} />
+              )}
+              <RouterProvider router={router} />
               {/*     mainscreen={mainscreen} */}
               {/*     setMainScreen={setMainScreen} */}
               {/*     setCreate={setCreate} */}

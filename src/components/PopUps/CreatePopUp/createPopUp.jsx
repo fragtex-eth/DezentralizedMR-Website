@@ -14,7 +14,7 @@ import {
 const FactoryABI = CompiledContract.abi;
 const FactoryContractAddress = FactoryContractInfo.address;
 
-export default function CreatePopUp({ onShow }) {
+export default function CreatePopUp({ setCreateModalVisible }) {
   //name, participants, endTime, reviewNeeded, capital
   const [input, setInput] = useState([[], [], [], 2500, 10, []]);
   const questions = [
@@ -86,9 +86,9 @@ export default function CreatePopUp({ onShow }) {
     setInput(inputperm);
   };
 
-  const allQuestions = questions.map((question) => {
+  const allQuestions = questions.map((question, index) => {
     return (
-      <div className="create-survey-form-question">
+      <div className="create-survey-form-question" key={index}>
         <span className="create-survey-form-question-title">
           {question.name}{" "}
           {question.obligatory ? (
@@ -111,11 +111,13 @@ export default function CreatePopUp({ onShow }) {
       <div className="create-survey">
         <div className="create-survey-top">
           <h1 className="create-survey-top-title">Create</h1>
-          <IconContext.Provider
-            value={{ className: "create-survey-top-close-icon" }}
-          >
-            <AiFillCloseCircle />
-          </IconContext.Provider>
+          <a onClick={() => setCreateModalVisible(false)}>
+            <IconContext.Provider
+              value={{ className: "create-survey-top-close-icon" }}
+            >
+              <AiFillCloseCircle />
+            </IconContext.Provider>
+          </a>
         </div>
         <div className="create-survey-form">
           {allQuestions}
