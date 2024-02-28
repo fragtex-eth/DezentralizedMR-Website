@@ -1,4 +1,9 @@
 import "./modal.scss";
-export function Modal({ children }) {
+import { createPortal } from "react-dom";
+
+const ModalInner = ({ children }) => {
   return <div className="modal">{children}</div>;
+};
+export function Modal(props) {
+  return createPortal(ModalInner(props), document.querySelector("#modal"));
 }
