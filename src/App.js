@@ -2,6 +2,8 @@ import "./App.css";
 import Header from "./components/header/header.jsx";
 import Background from "./components/background/background";
 import Info from "./components/info/info.jsx";
+import CreatePopUp from "./components/popups/CreatePopUp/createPopUp.jsx";
+
 import Discover from "./components/discover/discover.jsx";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -55,7 +57,8 @@ function App() {
         <ApolloProvider client={client}>
           <div className="App">
             <Background>
-              <RouterProvider router={router} />
+              <CreatePopUp />
+              {/* <RouterProvider router={router} /> */}
               {/*     mainscreen={mainscreen} */}
               {/*     setMainScreen={setMainScreen} */}
               {/*     setCreate={setCreate} */}

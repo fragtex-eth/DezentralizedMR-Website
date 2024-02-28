@@ -1,19 +1,20 @@
-import "./create.css";
+import "./createPopUp.scss";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useState } from "react";
-import CompiledContract from "../helper/Factory.json";
-import FactoryContractInfo from "../helper/address.json";
+import { Modal } from "../../common/modal/modal";
+import CompiledContract from "../../../utils/web3/abis/Factory.json";
+import FactoryContractInfo from "../../../utils/web3/addressFactory.json";
 import {
   prepareWriteContract,
-  writeContract,
   waitForTransaction,
+  writeContract,
 } from "@wagmi/core";
 
 const FactoryABI = CompiledContract.abi;
 const FactoryContractAddress = FactoryContractInfo.address;
 
-export default function Create({ onShow }) {
+export default function CreatePopUp({ onShow }) {
   //name, participants, endTime, reviewNeeded, capital
   const [input, setInput] = useState([[], [], [], 2500, 10, []]);
   const questions = [
@@ -51,12 +52,9 @@ export default function Create({ onShow }) {
   ];
 
   async function Create() {
-    console.log(input);
     const UNIXTime = Math.floor(Date.now() / 1000);
     let inputperm = input;
     inputperm[3] = inputperm[3] + UNIXTime;
-    console.log(UNIXTime);
-    console.log(inputperm[3]);
     setInput(inputperm);
     try {
       const config = await prepareWriteContract({
@@ -86,19 +84,22 @@ export default function Create({ onShow }) {
       inputperm[idx - 5] = event.target.value;
     }
     setInput(inputperm);
-    console.log(input);
   };
 
   const allQuestions = questions.map((question) => {
     return (
-      <div className="singlequestion">
-        <span className="title">
+      <div className="create-survey-form-question">
+        <span className="create-survey-form-question-title">
           {question.name}{" "}
-          {question.obligatory ? <span className="red">*</span> : ""}
+          {question.obligatory ? (
+            <span style={{ color: "#f26969" }}>*</span>
+          ) : (
+            ""
+          )}
         </span>
         <input
           type="text"
-          className="questioninput"
+          className="create-survey-form-question-input"
           onChange={(e) => handleChange(e, question.idx)}
         />
       </div>
@@ -106,39 +107,47 @@ export default function Create({ onShow }) {
   });
 
   return (
-    <div className="createsurvey">
-      <div className="creationscreen">
-        <div className="closeicon" onClick={onShow}>
-          <IconContext.Provider value={{ className: "closeicon" }}>
+    <Modal>
+      <div className="create-survey">
+        <div className="create-survey-top">
+          <h1 className="create-survey-top-title">Create</h1>
+          <IconContext.Provider
+            value={{ className: "create-survey-top-close-icon" }}
+          >
             <AiFillCloseCircle />
           </IconContext.Provider>
         </div>
-        <div className="question">
+        <div className="create-survey-form">
           {allQuestions}
-          <div className="singlequestion sqadj">
-            <span className="title adjustt">Participants:</span>
+          {
+            //Move the content to all questions
+          }
+          <div className="create-survey-form-question">
+            <span className="create-survey-form-question-title">
+              Participants:
+            </span>
             <input
               type="number"
-              className="questioninput finali"
+              className="create-survey-form-question-input"
               onChange={(e) => handleChange(e, 7)}
             />
           </div>
-          <div className="singlequestion sqadj">
-            <span className="title adjustt">Budget:</span>
+          <div className="create-survey-form-question">
+            <span className="create-survey-form-question-title">Budget:</span>
             <input
               type="number"
-              className="questioninput finali"
+              className="create-survey-form-question-input"
               onChange={(e) => handleChange(e, 10)}
             />
           </div>
-          <div className="singlequestion sqadj">
-            <span className="title adjustt btntxt">btn</span>
-            <button className="questioninput qb" onClick={(e) => Create()}>
-              Create
-            </button>
-          </div>
+          <button
+            className="create-survey-form-button"
+            onClick={(e) => Create()}
+          >
+            Create
+          </button>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }
