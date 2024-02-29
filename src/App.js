@@ -5,7 +5,7 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { goerli } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
-import Home from "./views/Home/home";
+import Home from "./views/Home/Home";
 const GRAPH_API_URI =
   "https://api.studio.thegraph.com/query/37184/mr-thegraph/v0.0.2";
 
