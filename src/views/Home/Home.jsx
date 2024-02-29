@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "../../components/header/header.jsx";
+import Header from "../../components/Header/header.jsx";
 import Background from "../../components/background/background";
 import Info from "../../components/info/info.jsx";
 import CreatePopUp from "../../components/popups/CreatePopUp/createPopUp.jsx";
