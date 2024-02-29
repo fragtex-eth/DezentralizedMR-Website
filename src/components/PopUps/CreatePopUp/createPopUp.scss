@@ -7,7 +7,7 @@
   width: 80%;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 2.5rem;
+  border-radius: var(--border-radius-medium);
   padding: 4rem;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
 
     &-close-icon {
       font-size: 3.5rem;
-      color: #a061df;
+      color: var(--color-primary);
       cursor: pointer;
       animation: move 5s linear 0 infinite;
       -webkit-animation: move 5s linear 0 infinite;
@@ -65,7 +65,7 @@
         all: unset;
         background: #f7f4f9;
         border: 2px solid #a7a7a74b;
-        border-radius: 2.5rem;
+        border-radius: var(--border-radius-medium);
         height: 3rem;
         font-size: 1rem;
         padding: 0 1.25rem;
@@ -75,7 +75,7 @@
 
         &:focus {
           box-shadow: 0px 8px 12px rgba(93, 0, 207, 0.08);
-          border: 2px solid #a061df;
+          border: 2px solid var(--color-primary);
           height: 46px;
         }
       }
@@ -84,7 +84,7 @@
     &-button {
       display: flex;
       align-items: center;
-      background: #a061df;
+      background: var(--color-primary);
       margin-top: auto;
       color: white;
       font-size: 18px;

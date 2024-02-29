@@ -14,6 +14,10 @@ html {
     "Droid Sans",
     "Helvetica Neue",
     sans-serif;
+  --color-primary: #a061df;
+  --border-radius-small: 2.125rem;
+  --border-radius-medium: 2.5rem;
+  --border-radius-large: 3.125rem;
 }
 
 body {
@@ -37,7 +41,7 @@ button {
   font-weight: 600;
   justify-content: center;
   padding: 0.8rem;
-  border-radius: 2.5rem;
+  border-radius: var(--border-radius-medium);
 
   &:hover {
     transform: scale(1.01);
@@ -74,6 +78,6 @@ p {
 
 .violet-btn {
   color: white;
-  background: #a061df;
+  background: var(--color-primary);
   box-shadow: 0 0.5rem 0.75rem rgba(93, 0, 207, 0.15);
 }

@@ -36,7 +36,7 @@ export default function Header({ setCreateModalVisible }) {
             onClick={() => console.log("requestreview")}
             disabled="true"
           >
-            Review ~0.0001 ETH
+            Review
           </button>
         </div>
       </header>

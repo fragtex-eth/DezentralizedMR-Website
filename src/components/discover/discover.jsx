@@ -32,7 +32,7 @@ export default function Discover() {
     }
 
     getInformation();
-  }, [data, loading]);
+  }, [data]);
   return (
     <section className="discover">
       {loading

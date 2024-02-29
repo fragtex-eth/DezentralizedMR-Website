@@ -1,4 +1,4 @@
-import "./review.css";
+import "./review.scss";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useState } from "react";

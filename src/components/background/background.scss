@@ -10,11 +10,13 @@
 
   &-circleblur {
     position: absolute;
-    background: radial-gradient(50% 50% at 50% 50%,
-        rgba(160, 97, 223, 0.3) 0%,
-        rgba(160, 97, 223, 0) 100%);
-    height: 1000px;
-    width: 1500px;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(160, 97, 223, 0.3) 0%,
+      rgba(160, 97, 223, 0) 100%
+    );
+    height: 62rem;
+    width: 93rem;
     z-index: -2;
     left: 40%;
     top: 10rem;

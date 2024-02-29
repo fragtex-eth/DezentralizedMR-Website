@@ -32,7 +32,7 @@ header {
     font-weight: 400;
 
     &:hover {
-      color: #a061df;
+      color: var(--color-primary);
     }
   }
 
@@ -50,5 +50,15 @@ header {
         transform: scale(1);
       }
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bottom-row-link-btn:nth-of-type(n + 2) {
+    display: none;
+  }
+
+  .bottom-row-review-btn {
+    display: none;
   }
 }
