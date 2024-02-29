@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  max-width: 75rem;
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px clamp(5px, 0px + 2vw, 15px);
+}

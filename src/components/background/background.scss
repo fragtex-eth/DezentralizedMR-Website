@@ -1,0 +1,25 @@
+.background {
+  &-lines {
+    position: absolute;
+    z-index: -1;
+    height: 56rem;
+    left: 50%;
+    top: 10rem;
+    transform: translateX(-50%);
+  }
+
+  &-circleblur {
+    position: absolute;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(160, 97, 223, 0.3) 0%,
+      rgba(160, 97, 223, 0) 100%
+    );
+    height: 62rem;
+    width: 93rem;
+    z-index: -2;
+    left: 40%;
+    top: 10rem;
+    transform: translateX(-50%);
+  }
+}
