@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "../../components/Header/header.jsx";
-import Background from "../../components/background/background";
+import Header from "../../components/header/header.jsx";
+import Background from "../../components/background/background.jsx";
 import Info from "../../components/info/info.jsx";
-import CreatePopUp from "../../components/popups/CreatePopUp/createPopUp.jsx";
-import AnswerPopUp from "../../components/popups/AnswerPopUp/answerPopUp.jsx";
+import CreatePopUp from "../../components/popUps/createPopUp/createPopUp.jsx";
+import AnswerPopUp from "../../components/popUps/answerPopUp/answerPopUp.jsx";
 import Discover from "../../components/discover/discover.jsx";
 import { useState } from "react";
 
