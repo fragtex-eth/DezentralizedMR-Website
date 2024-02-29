@@ -1,1 +1,22 @@
+logs
+*.log
+npm-debug.log*
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/
+
+# Dependency directories
 node_modules/
+
+# Distribution directories
+dist/
+
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+
+# Output of 'npm pack'
+*.tgz
+
