@@ -56,7 +56,7 @@ export default function Card({
           <span className="card-bottom-participants-current">
             {currentParticipants}
           </span>
-          / {maximumParticipants}
+          /&nbsp;{maximumParticipants}
         </p>
       </div>
       <div className="card-progress">
