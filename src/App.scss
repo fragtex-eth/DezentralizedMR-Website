@@ -8,3 +8,9 @@
   margin-right: auto;
   padding: 10px clamp(5px, 0px + 2vw, 15px);
 }
+
+@media only screen and (max-width: 820px) {
+  .App {
+    gap: 1rem;
+  }
+}
